@@ -4,6 +4,7 @@ import { Analytics } from '@vercel/analytics/next'
 import { AuthProvider } from '@/contexts/auth-context'
 import { TransitionProvider } from '@/contexts/transition-context'
 import { AppWrapper } from '@/components/app-wrapper'
+import { PWARegister } from '@/components/pwa-register'
 import './globals.css'
 
 const inter = Inter({ 
@@ -31,22 +32,22 @@ export const metadata: Metadata = {
   generator: 'CitoAprova',
   keywords: ['citologia', 'biologia', 'ENEM', 'jogo educacional', 'celulas', 'teoria celular'],
   authors: [{ name: 'CitoAprova' }],
+  manifest: '/manifest.json',
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'black-translucent',
+    title: 'CitoAprova',
+  },
   icons: {
     icon: [
       { url: '/favicon.png', sizes: '32x32', type: 'image/png' },
       { url: '/icon.svg', type: 'image/svg+xml' },
-      {
-        url: '/icon-light-32x32.png',
-        media: '(prefers-color-scheme: light)',
-        sizes: '32x32',
-      },
-      {
-        url: '/icon-dark-32x32.png',
-        media: '(prefers-color-scheme: dark)',
-        sizes: '32x32',
-      },
+      { url: '/icon-light-32x32.png', media: '(prefers-color-scheme: light)', sizes: '32x32' },
+      { url: '/icon-dark-32x32.png', media: '(prefers-color-scheme: dark)', sizes: '32x32' },
+      { url: '/icons/icon-192x192.png', sizes: '192x192', type: 'image/png' },
+      { url: '/icons/icon-512x512.png', sizes: '512x512', type: 'image/png' },
     ],
-    apple: '/apple-icon.png',
+    apple: '/icons/apple-touch-icon.png',
     shortcut: '/favicon.png',
   },
 }
@@ -66,6 +67,7 @@ export default function RootLayout({
             </AppWrapper>
           </TransitionProvider>
         </AuthProvider>
+        <PWARegister />
         <Analytics />
       </body>
     </html>
