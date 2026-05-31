@@ -404,6 +404,7 @@ export default function MinigameTester({ phaseId = 1 }: MinigameTesterProps) {
             ]}
             gridSize={10}
           />
+        )
       default:
         return (
           <div className="flex items-center justify-center h-64 bg-card rounded-xl border border-border">
