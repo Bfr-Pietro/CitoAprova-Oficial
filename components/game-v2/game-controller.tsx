@@ -927,6 +927,12 @@ function MinigamesListScreen({ onBack }: { onBack: () => void }) {
     { name: 'Acerte a Toupeira', icon: '🔨', description: 'Acerte os termos corretos que aparecem nos buracos', color: 'from-orange-600 to-amber-600' },
     { name: 'Puzzle Deslizante', icon: '🧩', description: 'Organize as letras deslizando para formar a palavra', color: 'from-cyan-600 to-emerald-600' },
     { name: 'Ritmo e Toque', icon: '🎵', description: 'Toque nas letras certas no ritmo para formar respostas', color: 'from-purple-600 to-pink-600' },
+    { name: 'CytoWordle', icon: '🔬', description: 'Descubra o termo de citologia letra por letra', color: 'from-green-600 to-teal-600' },
+    { name: 'Construtor de Célula', icon: '🧫', description: 'Monte a célula arrastando organelas para o lugar certo', color: 'from-blue-600 to-cyan-600' },
+    { name: 'Quiz de Organelas', icon: '🔭', description: 'Responda perguntas interativas sobre organelas celulares', color: 'from-violet-600 to-indigo-600' },
+    { name: 'Memória Celular', icon: '🧬', description: 'Encontre os pares de estruturas e funções celulares', color: 'from-teal-600 to-green-600' },
+    { name: 'Função & Organela', icon: '⚗️', description: 'Conecte cada organela à sua função correta', color: 'from-amber-600 to-yellow-600' },
+    { name: 'Caça-Palavras Bio', icon: '🔍', description: 'Encontre os termos biológicos escondidos na grade', color: 'from-rose-600 to-red-600' },
   ]
 
   return (
