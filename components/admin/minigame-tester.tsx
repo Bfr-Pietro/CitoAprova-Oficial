@@ -27,6 +27,12 @@ import { ColorMatchGame } from '@/components/minigames/color-match-game'
 import { WhackAMoleGame } from '@/components/minigames/whack-a-mole-game'
 import { SliderPuzzleGame } from '@/components/minigames/slider-puzzle-game'
 import { RhythmTapGame } from '@/components/minigames/rhythm-tap-game'
+import { CytoWordleGame } from '@/components/minigames/cyto-wordle-game'
+import { CellBuilderGame } from '@/components/minigames/cell-builder-game'
+import { OrganelleQuizGame } from '@/components/minigames/organelle-quiz-game'
+import { CellMemoryGame } from '@/components/minigames/cell-memory-game'
+import { FunctionMatchGame } from '@/components/minigames/function-match-game'
+import { BioWordSearchGame } from '@/components/minigames/bio-word-search-game'
 
 // All available minigame types with their display names
 const MINIGAME_CATALOG: { type: MinigameType; name: string; description: string }[] = [
@@ -52,6 +58,12 @@ const MINIGAME_CATALOG: { type: MinigameType; name: string; description: string 
   { type: 'whack-a-mole', name: 'Acerte a Toupeira', description: 'Acerte os termos corretos' },
   { type: 'slider-puzzle', name: 'Puzzle Deslizante', description: 'Deslize para formar a resposta' },
   { type: 'rhythm-tap', name: 'Ritmo Musical', description: 'Toque no ritmo correto' },
+  { type: 'cyto-wordle', name: 'CytoWordle', description: 'Descubra o termo de citologia' },
+  { type: 'cell-builder', name: 'Construtor de Célula', description: 'Monte a célula arrastando organelas' },
+  { type: 'organelle-quiz', name: 'Quiz de Organelas', description: 'Quiz interativo sobre organelas celulares' },
+  { type: 'cell-memory', name: 'Memória Celular', description: 'Jogo da memória com estruturas celulares' },
+  { type: 'function-match', name: 'Função & Organela', description: 'Conecte cada organela à sua função' },
+  { type: 'bio-word-search', name: 'Caça-Palavras Bio', description: 'Encontre os termos biológicos escondidos' },
 ]
 
 interface MinigameTesterProps {
@@ -73,6 +85,7 @@ export default function MinigameTester({ phaseId = 1 }: MinigameTesterProps) {
     pattern: ['simon-says', 'rhythm-tap', 'path-connect', 'catch-sequence'],
     typing: ['typing-speed', 'falling-letters', 'slider-puzzle'],
     other: ['swipe-category', 'color-match', 'boss-battle'],
+    cytology: ['cyto-wordle', 'cell-builder', 'organelle-quiz', 'cell-memory', 'function-match', 'bio-word-search'],
   }
 
   const categoryNames: Record<string, string> = {
@@ -82,6 +95,7 @@ export default function MinigameTester({ phaseId = 1 }: MinigameTesterProps) {
     pattern: 'Padroes e Sequencias',
     typing: 'Digitacao e Letras',
     other: 'Outros',
+    cytology: 'Citologia Temáticos',
   }
 
   const handleStartMinigame = () => {
@@ -297,6 +311,99 @@ export default function MinigameTester({ phaseId = 1 }: MinigameTesterProps) {
             ]}
           />
         )
+      case 'cyto-wordle':
+        return (
+          <CytoWordleGame
+            {...base}
+            words={[
+              { word: 'NUCLEO', hint: 'Centro de controle da celula', category: 'organela' },
+              { word: 'MITOSE', hint: 'Divisao celular somatica', category: 'processo' },
+              { word: 'OSMOSE', hint: 'Transporte de agua pela membrana', category: 'processo' },
+            ]}
+          />
+        )
+      case 'cell-builder':
+        return (
+          <CellBuilderGame
+            {...base}
+            cellType="animal"
+            organelles={[
+              { id: 'mit', name: 'Mitocondria', description: 'Producao de energia (ATP)', correctZone: 'citoplasma' },
+              { id: 'nuc', name: 'Nucleo', description: 'Controle genetico', correctZone: 'centro' },
+              { id: 'rib', name: 'Ribossomo', description: 'Sintese de proteinas', correctZone: 'citoplasma' },
+              { id: 'gol', name: 'Complexo de Golgi', description: 'Processamento e transporte', correctZone: 'citoplasma' },
+            ]}
+            dropZones={[
+              { id: 'centro', label: 'Centro', description: 'Regiao central da celula', x: 35, y: 35, width: 30, height: 30 },
+              { id: 'citoplasma', label: 'Citoplasma', description: 'Regiao ao redor do nucleo', x: 10, y: 10, width: 80, height: 80 },
+            ]}
+          />
+        )
+      case 'organelle-quiz':
+        return (
+          <OrganelleQuizGame
+            {...base}
+            questions={[
+              {
+                question: 'Qual organela é responsável pela produção de energia?',
+                options: ['Mitocondria', 'Nucleo', 'Ribossomo', 'Vacuolo'],
+                correctIndex: 0,
+                explanation: 'A mitocondria realiza a respiracao celular, produzindo ATP.',
+                category: 'energia',
+              },
+              {
+                question: 'Onde ocorre a sintese de proteinas?',
+                options: ['Nucleo', 'Mitocondria', 'Ribossomo', 'Lisossomo'],
+                correctIndex: 2,
+                explanation: 'Os ribossomos sao a maquinaria de sintese proteica da celula.',
+                category: 'sintese',
+              },
+              {
+                question: 'Qual organela digere substâncias indesejadas?',
+                options: ['Vacuolo', 'Lisossomo', 'Complexo de Golgi', 'Reticulo'],
+                correctIndex: 1,
+                explanation: 'Os lisossomos possuem enzimas digestivas que degradam macromoleculas.',
+                category: 'digestao',
+              },
+            ]}
+          />
+        )
+      case 'cell-memory':
+        return (
+          <CellMemoryGame
+            {...base}
+            pairs={[
+              { id: '1', term: 'Mitocondria', match: 'Producao de ATP', category: 'energia' },
+              { id: '2', term: 'Nucleo', match: 'Controle genetico', category: 'controle' },
+              { id: '3', term: 'Ribossomo', match: 'Sintese de proteinas', category: 'sintese' },
+              { id: '4', term: 'Lisossomo', match: 'Digestao celular', category: 'digestao' },
+            ]}
+          />
+        )
+      case 'function-match':
+        return (
+          <FunctionMatchGame
+            {...base}
+            pairs={[
+              { id: '1', organelle: 'Mitocondria', function: 'Producao de energia', category: 'metabolismo' },
+              { id: '2', organelle: 'Cloroplasto', function: 'Fotossintese', category: 'metabolismo', hint: 'Presente em celulas vegetais' },
+              { id: '3', organelle: 'Ribossomo', function: 'Sintese de proteinas', category: 'sintese' },
+              { id: '4', organelle: 'Vacuolo', function: 'Armazenamento e pressao osmotica', category: 'transporte' },
+            ]}
+          />
+        )
+      case 'bio-word-search':
+        return (
+          <BioWordSearchGame
+            {...base}
+            words={[
+              { word: 'MITOSE', hint: 'Divisao celular somatica', category: 'processo' },
+              { word: 'NUCLEO', hint: 'Organela de controle', category: 'organela' },
+              { word: 'DNA', hint: 'Material genetico', category: 'molecula' },
+              { word: 'ATP', hint: 'Molecula de energia', category: 'molecula' },
+            ]}
+            gridSize={10}
+          />
       default:
         return (
           <div className="flex items-center justify-center h-64 bg-card rounded-xl border border-border">
