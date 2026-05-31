@@ -1,19 +1,5 @@
 # Como instalar o CitoAprova como app (PWA)
 
-## Arquivos alterados/adicionados no projeto
-
-| Arquivo | Ação |
-|---|---|
-| `app/layout.tsx` | Substitui o existente |
-| `components/pwa-register.tsx` | Arquivo novo |
-| `public/manifest.json` | Arquivo novo |
-| `public/sw.js` | Arquivo novo |
-| `public/icons/icon-192x192.png` | Arquivo novo |
-| `public/icons/icon-512x512.png` | Arquivo novo |
-| `public/icons/apple-touch-icon.png` | Arquivo novo |
-
----
-
 ## Como o usuário instala o app
 
 ### Android (Chrome)
