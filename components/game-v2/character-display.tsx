@@ -59,8 +59,8 @@ export function CharacterDisplay({
         className={cn(
           // ancora no rodapé do pai, ocupa 100% da altura do pai
           'absolute bottom-0 h-full',
-          // largura responsiva
-          'w-[22vw] sm:w-[18vw] md:w-[14vw] max-w-[200px] min-w-[70px]',
+          // largura responsiva — maior no mobile
+          'w-[38vw] sm:w-[22vw] md:w-[16vw] max-w-[220px] min-w-[90px]',
           positionClasses,
           'pointer-events-none select-none',
           className,
