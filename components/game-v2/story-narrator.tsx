@@ -308,12 +308,12 @@ export function StoryNarrator({ story, storyType, onComplete, onSkip }: StoryNar
 
       {/* ── 3. Caixa de diálogo — visível SOMENTE quando há personagens na tela ── */}
       {showChars && (
-        <div className="flex-shrink-0 px-4 pt-3 pb-2 bg-gradient-to-t from-slate-900 to-slate-900/95">
+        <div className="flex-shrink-0 px-3 pt-2 pb-1 bg-gradient-to-t from-slate-900 to-slate-900/95">
           <div className="max-w-2xl mx-auto">
-            <div className={cn('bg-slate-800/90 backdrop-blur-sm rounded-xl p-3 border shadow-xl', dialogBorderColor)}>
+            <div className={cn('bg-slate-800/90 backdrop-blur-sm rounded-xl p-2.5 sm:p-3 border shadow-xl', dialogBorderColor)}>
               <CharacterAvatar speaker={currentDialogue.speaker} />
               <p className={cn(
-                'text-sm sm:text-base text-gray-100 leading-relaxed',
+                'text-xs sm:text-sm md:text-base text-gray-100 leading-snug sm:leading-relaxed line-clamp-3 sm:line-clamp-none',
                 currentDialogue.speaker === 'narrador' && 'italic text-gray-300',
               )}>
                 {displayedText}
@@ -325,14 +325,14 @@ export function StoryNarrator({ story, storyType, onComplete, onSkip }: StoryNar
       )}
 
       {/* ── 4. Botões — sempre fixos no rodapé ── */}
-      <div className="flex-shrink-0 px-4 py-3 border-t border-white/10 bg-slate-900 pb-safe-bottom">
+      <div className="flex-shrink-0 px-3 sm:px-4 py-2 sm:py-3 border-t border-white/10 bg-slate-900 pb-safe-bottom">
         <div className="max-w-2xl mx-auto flex gap-3">
           {onSkip && (
             <Button
               onClick={onSkip}
               variant="outline"
               size="sm"
-              className="flex-shrink-0 border-white/30 bg-slate-700 text-white hover:bg-slate-600 hover:text-white text-xs font-semibold px-4 h-11"
+              className="flex-shrink-0 border-white/30 bg-slate-700 text-white hover:bg-slate-600 hover:text-white text-xs font-semibold px-3 h-9 sm:h-11"
             >
               Pular
             </Button>
@@ -340,7 +340,7 @@ export function StoryNarrator({ story, storyType, onComplete, onSkip }: StoryNar
           <Button
             onClick={handleNext}
             className={cn(
-              'flex-1 h-11 text-sm font-bold rounded-xl shadow-lg',
+              'flex-1 h-9 sm:h-11 text-sm font-bold rounded-xl shadow-lg',
               storyType === 'villainChallenge'
                 ? 'bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600'
                 : 'bg-gradient-to-r from-cyan-500 to-emerald-500 hover:from-cyan-600 hover:to-emerald-600',
