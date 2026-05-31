@@ -206,7 +206,8 @@ export function StoryNarrator({ story, storyType, onComplete, onSkip }: StoryNar
       </div>
 
       {/* ── Área central — personagens OU texto centralizado ── */}
-      <div className="flex-1 min-h-0 relative flex flex-col">
+      {/* height explícita para os personagens absolute funcionarem */}
+      <div className="flex-1 min-h-0 relative" style={{ isolation: 'isolate' }}>
 
         {showChars ? (
           /* Personagens preenchem o espaço inteiro */
@@ -232,7 +233,7 @@ export function StoryNarrator({ story, storyType, onComplete, onSkip }: StoryNar
           </>
         ) : (
           /* Sem personagens → texto centralizado verticalmente */
-          <div className="flex-1 flex items-center justify-center px-4">
+          <div className="absolute inset-0 flex items-center justify-center px-4">
             <div className="max-w-2xl w-full">
               {isInfo ? (
                 <InfoBox infoBox={currentDialogue.infoBox!} />
