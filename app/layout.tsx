@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { Inter, Geist_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
+import Script from 'next/script'
 import { AuthProvider } from '@/contexts/auth-context'
 import { TransitionProvider } from '@/contexts/transition-context'
 import { AppWrapper } from '@/components/app-wrapper'
@@ -69,6 +70,34 @@ export default function RootLayout({
         </AuthProvider>
         <PWARegister />
         <Analytics />
+
+        {/* Widget de Acessibilidade UserWay */}
+        <Script
+          src="https://cdn.userway.org/widget.js"
+          data-account="Qkyy1txWLC"
+          strategy="afterInteractive"
+        />
+
+        {/* Widget VLibras - Acessibilidade em Libras */}
+        <div
+          dangerouslySetInnerHTML={{
+            __html: `
+              <div vw class="enabled">
+                <div vw-access-button class="active"></div>
+                <div vw-plugin-wrapper>
+                  <div class="vw-plugin-top-wrapper"></div>
+                </div>
+              </div>
+            `,
+          }}
+        />
+        <Script
+          src="https://vlibras.gov.br/app/vlibras-plugin.js"
+          strategy="afterInteractive"
+          onLoad={() => {
+            new (window as any).VLibras.Widget('https://vlibras.gov.br/app');
+          }}
+        />
       </body>
     </html>
   )
