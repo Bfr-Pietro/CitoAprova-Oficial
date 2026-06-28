@@ -33,6 +33,9 @@ export const metadata: Metadata = {
   generator: 'CitoAprova',
   keywords: ['citologia', 'biologia', 'ENEM', 'jogo educacional', 'celulas', 'teoria celular'],
   authors: [{ name: 'CitoAprova' }],
+  verification: {
+    google: 'VWsPA22_aWE5ds9VFINlekWZsZkmn4urWEJcaVgHsDo',
+  },
   manifest: '/manifest.json',
   appleWebApp: {
     capable: true,
