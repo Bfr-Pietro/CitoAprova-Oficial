@@ -6,6 +6,7 @@ import { AuthProvider } from '@/contexts/auth-context'
 import { TransitionProvider } from '@/contexts/transition-context'
 import { AppWrapper } from '@/components/app-wrapper'
 import { PWARegister } from '@/components/pwa-register'
+import { VLibrasWidget } from '@/components/vlibras-widget'
 import './globals.css'
 
 const inter = Inter({ 
@@ -82,25 +83,7 @@ export default function RootLayout({
         />
 
         {/* Widget VLibras - Acessibilidade em Libras */}
-        <div
-          dangerouslySetInnerHTML={{
-            __html: `
-              <div vw class="enabled">
-                <div vw-access-button class="active"></div>
-                <div vw-plugin-wrapper>
-                  <div class="vw-plugin-top-wrapper"></div>
-                </div>
-              </div>
-            `,
-          }}
-        />
-        <Script
-          src="https://vlibras.gov.br/app/vlibras-plugin.js"
-          strategy="afterInteractive"
-          onLoad={() => {
-            new (window as any).VLibras.Widget('https://vlibras.gov.br/app');
-          }}
-        />
+        <VLibrasWidget />
       </body>
     </html>
   )
